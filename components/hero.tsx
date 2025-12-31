@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Star, PlayCircle } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 
@@ -25,7 +25,7 @@ export default function Hero() {
 
   return (
     <section className="w-full px-4 py-6 md:px-8 lg:px-12">
-      <div className="relative w-full max-w-[1400px] h-[500px] md:h-[650px] mx-auto rounded-t-[3rem] rounded-bl-[3rem] overflow-hidden bg-gray-900 shadow-2xl">
+      <div className="relative w-full max-w-[1400px] min-h-[600px] md:h-[650px] mx-auto rounded-t-[2.5rem] md:rounded-t-[3rem] rounded-bl-[2.5rem] md:rounded-bl-[3rem] overflow-hidden bg-gray-900 shadow-2xl">
         
         {/* --- Background Image with Parallax Scale --- */}
         <motion.div
@@ -38,7 +38,7 @@ export default function Hero() {
             src="/luxury-home1.jpg" 
             alt="Modern Luxury Home"
             fill
-            className="object-cover opacity-90"
+            className="object-cover opacity-80 md:opacity-90"
             priority
           />
           {/* Advanced Gradient Overlay for better text readability */}
@@ -47,23 +47,23 @@ export default function Hero() {
         </motion.div>
 
         {/* --- Main Content --- */}
-        <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-16 lg:p-20">
+        <div className="relative z-10 h-full flex flex-col justify-between p-6 md:p-16 lg:p-20">
           
           {/* Text Content */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="max-w-3xl mt-8"
+            className="max-w-3xl mt-8 md:mt-12"
           >
             {/* Pill Label */}
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-white/90">New Listings Live</span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/90">New Listings Live</span>
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-tighter leading-[0.95] mb-6"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-tighter leading-[0.95] mb-6"
             >
               Find Your <br />
               <span className="text-white/50">Perfect Home</span>
@@ -71,18 +71,18 @@ export default function Hero() {
 
             <motion.p
               variants={fadeInUp}
-              className="text-lg text-gray-300 font-light max-w-lg mb-10 leading-relaxed border-l-2 border-white/30 pl-6"
+              className="text-base md:text-lg text-gray-300 font-light max-w-md md:max-w-lg mb-8 md:mb-10 leading-relaxed border-l-2 border-white/30 pl-4 md:pl-6"
             >
               We provide tailored real estate solutions, guiding you through every step with personalized experiences that meet your unique needs.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-6">
-              <button className="group relative flex items-center gap-4 pl-8 pr-2 py-2.5 bg-white rounded-full overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98]">
-                <span className="relative z-10 text-black font-bold tracking-wide text-sm uppercase">
+              <button className="group relative flex items-center gap-4 pl-6 md:pl-8 pr-2 py-2.5 bg-white rounded-full overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98]">
+                <span className="relative z-10 text-black font-bold tracking-wide text-xs md:text-sm uppercase">
                   Explore Properties
                 </span>
-                <div className="relative z-10 w-10 h-10 bg-black rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                  <ArrowUpRight className="text-white w-5 h-5" />
+                <div className="relative z-10 w-9 h-9 md:w-10 md:h-10 bg-black rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+                  <ArrowUpRight className="text-white w-4 h-4 md:w-5 md:h-5" />
                 </div>
               </button>
             </motion.div>
@@ -92,18 +92,19 @@ export default function Hero() {
           <motion.div
             variants={staggerContainer}
             initial="hidden"
-            animate="visible"
-            className="flex flex-wrap gap-12 md:gap-24 items-end mt-auto"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-8 md:gap-24 items-end mt-12 md:mt-auto"
           >
             {[
               { number: "200+", text: "Projects Complete" },
               { number: "$10M+", text: "Market Value" },
             ].map((stat, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <p className="text-4xl md:text-5xl font-light text-white mb-1 tracking-tight">
+                <p className="text-3xl md:text-5xl font-light text-white mb-1 tracking-tight">
                   {stat.number}
                 </p>
-                <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
+                <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">
                   {stat.text}
                 </p>
               </motion.div>
@@ -111,9 +112,9 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* --- Floating Agent Card (Cutout Effect) --- */}
+        {/* --- Floating Agent Card (Hidden on Mobile) --- */}
         <motion.div
-          className="absolute bottom-0 right-0 z-20 hidden md:block"
+          className="absolute bottom-0 right-0 z-20 hidden lg:block"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
